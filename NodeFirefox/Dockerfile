@@ -6,10 +6,18 @@ USER root
 #=========
 # Firefox
 #=========
-RUN apt-get update -qqy \
-  && apt-get -qqy --no-install-recommends install \
-    firefox \
-  && rm -rf /var/lib/apt/lists/*
+RUN apt-get update -qqy && \
+      apt-get -qqy --no-install-recommends install firefox && \
+      rm -rf /var/lib/apt/lists/*
+
+#============
+# FlashPlayer
+#============
+RUN apt-get -qqy --no-install-recommends install \
+      software-properties-common python-software-properties && \
+      add-apt-repository -y ppa:nilarimogard/webupd8 && \
+      apt-get update -qqy && \
+      apt-get -qqy --no-install-recommends install freshplayerplugin
 
 #========================
 # Selenium Configuration
